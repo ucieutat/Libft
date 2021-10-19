@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/17 12:17:27 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/10/18 20:47:35 by ucieutat         ###   ########.fr       */
+/*   Created: 2021/10/19 00:15:47 by ucieutat          #+#    #+#             */
+/*   Updated: 2021/10/19 00:38:18 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	t_list	*newlst;
+	t_list	*tmp;
+	t_list	*first;
+
+	if (!f || !del || !lst)
+		return (NULL);
+	newlst = malloc(sizeof(t_list));
+	if (!newlst)
+		return (NULL);
+	newlst = f(lst);
+	first = newlst;
+	while (lst)
+	{
+		tmp = f(lst);
+		newlst->next = tmp;
+		tmp->next = NULL;
+		newlst = newlst->next;
+		lst = lst->next;
+	}
+	return (first);
 }

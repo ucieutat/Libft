@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/17 12:17:27 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/10/18 20:47:35 by ucieutat         ###   ########.fr       */
+/*   Created: 2021/10/19 00:13:20 by ucieutat          #+#    #+#             */
+/*   Updated: 2021/10/19 00:40:50 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!s)
+	if (!lst || !f)
 		return ;
-	write(fd, s, ft_strlen(s));
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }
