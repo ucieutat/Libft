@@ -6,7 +6,7 @@
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 09:53:33 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/11/23 17:33:40 by ucieutat         ###   ########.fr       */
+/*   Updated: 2021/11/24 12:20:29 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,27 @@ static int	is_inset(char c, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*result;
 	int		debut;
 	int		fin;
-	int		i;
+	char	*result;
 
 	if (!s1)
 		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
 	debut = 0;
-	i = 0;
-	fin = ft_strlen((char *)s1) - 1;
+	fin = ft_strlen(s1);
 	while (is_inset(s1[debut], set))
 		debut++;
-	while (is_inset(s1[fin], set) && fin > debut)
+	if (debut == fin)
+	{
+		result = ft_strdup("");
+		if (!result)
+			return (NULL);
+		else
+			return (result);
+	}
+	while (is_inset(s1[fin - 1], set))
 		fin--;
-	if (debut > fin)
-		return ("");
-	result = malloc(sizeof(char) * (fin - debut + 2));
-	if (!result)
-		return (NULL);
-	while (debut <= fin)
-		result[i++] = s1[debut++];
-	result[i] = '\0';
-	return (result);
+	return (ft_substr(s1, debut, fin - debut));
 }

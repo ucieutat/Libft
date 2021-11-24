@@ -6,7 +6,7 @@
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 16:10:51 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/11/23 16:48:26 by ucieutat         ###   ########.fr       */
+/*   Updated: 2021/11/24 11:51:09 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,4 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (result)
 		ft_bzero(result, nmemb * size);
 	return (result);
-}		
+}	
